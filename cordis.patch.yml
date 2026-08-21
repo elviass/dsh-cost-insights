@@ -1,0 +1,4 @@
+# Usage Insights host row. The browser half is discovered from package.json.
+- insert:
+    - id: usage-insights
+      name: dsh-usage-insights

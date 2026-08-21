@@ -1,0 +1,11 @@
+node_modules/
+*.tgz
+*.log
+*.sqlite
+*.sqlite-*
+backups/
+release/
+test-results/
+playwright-report/
+.DS_Store
+Thumbs.db
