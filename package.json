@@ -70,10 +70,8 @@
     "lib",
     "cordis.patch.yml",
     "README.md",
-    "README.zh.md",
+    "README.en.md",
     "CHANGELOG.md",
-    "SECURITY.md",
-    "CONTRIBUTING.md",
     "LICENSE"
   ],
   "dependencies": {
