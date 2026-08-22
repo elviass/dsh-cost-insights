@@ -11,7 +11,7 @@ const filename = `${pkg.name}-${pkg.version}.tgz`
 const archive = process.argv[2] ? join(root, process.argv[2]) : join(root, 'release', filename)
 const listing = execFileSync('tar', ['-tf', archive], { encoding: 'utf8' }).replace(/\r/g, '').trim().split('\n')
 const forbidden = listing.filter(path => /(?:^|\/)(?:test|scripts|\.github|node_modules|release|\.dsh-home)(?:\/|$)|\.(?:sqlite|tgz|png|zstd)$|credentials/i.test(path))
-const required = ['package/package.json', 'package/cordis.patch.yml', 'package/lib/index.js', 'package/lib/client.js', 'package/LICENSE', 'package/README.md', 'package/README.zh.md', 'package/SECURITY.md']
+const required = ['package/package.json', 'package/cordis.patch.yml', 'package/lib/index.js', 'package/lib/client.js', 'package/LICENSE', 'package/README.md', 'package/README.en.md', 'package/CHANGELOG.md']
 const missing = required.filter(path => !listing.includes(path))
 if (forbidden.length || missing.length) {
   forbidden.forEach(path => console.error(`forbidden package path: ${path}`))

@@ -5,80 +5,60 @@
 [![CI](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml)
 
-Auditable local usage, token, cache, balance, and pricing analytics for DeepSeek Harness.
+Local usage, token, cache, cost, balance, and model-pricing analytics for DeepSeek Harness.
 
 ![Usage analytics in the Chinese interface](docs/images/usage-cost.png)
 
-> This project is distributed only through GitHub Releases. The unscoped npm name
-> `dsh-usage-insights` belongs to another publisher. Do not install it from npm and
-> do not publish this repository to npm.
+## Features
+
+- Filter usage and cost by conversation, workspace, model, API provider, purpose, and date range.
+- Explore token, cost, and model activity through line charts, distribution charts, and a 365-day heatmap.
+- Track input, cache writes, output, cache hit rate, and request count.
+- Synchronize supported model prices and exchange rates, with CNY conversion for USD prices.
+- Show balances from supported APIs and peak/off-peak prices for official DeepSeek calls.
+- Extend the existing DSH composer statistics line and sidebar without replacing the original UI.
+- Follow the DSH language and light/dark theme automatically.
 
 ## Install
 
-1. Download `dsh-usage-insights-1.0.0.tgz` and `SHA256SUMS.txt` from the
-   [v1.0.0 release](https://github.com/elviass/dsh-usage-insights/releases/tag/v1.0.0).
-2. Verify the archive checksum.
-3. Install the local archive with the DSH plugin command for your profile:
+1. Download `dsh-usage-insights-1.0.0.tgz` from the [v1.0.0 release](https://github.com/elviass/dsh-usage-insights/releases/tag/v1.0.0).
+2. Optionally download `SHA256SUMS.txt` and verify the archive checksum.
+3. Install the downloaded archive for the appropriate DSH profile:
 
    ```console
    dsh plugin --profile web add ./dsh-usage-insights-1.0.0.tgz
    ```
 
-The GitHub package specifier is intentionally not documented as a shortcut until
-it has passed the same two-version installation test as the release archive.
+> This project is distributed only through GitHub Releases. The unscoped npm name
+> `dsh-usage-insights` belongs to another publisher and is unrelated to this project.
+
+## Use
+
+After installing and starting DSH, open **Settings → Usage Insights** for the full
+dashboard. The line below the conversation composer shows current model pricing,
+conversation cost, and supported API balances; the sidebar shows today's total cost.
+
+In **More → About**, click the version seven times to export a sanitized diagnostic log.
 
 ## Compatibility
 
 - DeepSeek Harness `>=0.1.0-rc.7 <0.2.0`
 - Node.js `^22.19.0 || >=24.0.0`
-- Web client surface
+- DSH web client
 
-The release candidate is tested against DSH `0.1.0-rc.7` and `0.1.1-rc.2` in
+Version 1.0.0 was installation-tested with DSH `0.1.0-rc.7` and `0.1.1-rc.2` in
 independent temporary `DSH_HOME` directories.
 
-## What it records
+## Data and privacy
 
-The plugin records numeric usage metadata, provider/model identifiers, timestamps,
-session/workspace grouping, price-source metadata, and optional balance snapshots.
-It does not store prompts, responses, or raw API keys. Credential statistics only
-accept explicit credential references (`credentialRef`, `apiKeyRef`, or
-`apiKeyEnv`).
+The plugin stores numeric usage metadata, provider and model identifiers, timestamps,
+conversation/workspace grouping, price-source metadata, and optional balance snapshots
+locally. It does not store prompts, response text, or raw API keys.
 
-Network price synchronization is limited to the provider documentation hosts listed
-in `package.json`. The OpenRouter catalogue URL is fixed to the official HTTPS API;
-configuration cannot turn it into an arbitrary request target.
-
-## Development
-
-```console
-pnpm install --frozen-lockfile
-pnpm check
-pnpm test
-pnpm test:coverage
-pnpm test:live
-pnpm audit
-pnpm run release:build
-pnpm run release:verify
-```
-
-`test:live` contacts public price/documentation endpoints and reports each source
-separately. Balance adapters use fixtures in automated tests; they do not require or
-read a personal account.
-
-The sibling `dsh-sandbox` directory, old release archives, databases, credentials,
-and machine-local screenshots are maintainer-only data and are not part of this
-repository or release package.
-
-## Release policy
-
-Tags matching `v*` build GitHub Release assets: the `.tgz`, `SHA256SUMS.txt`, an SPDX
-SBOM, and release notes. There is no npm-publish job. See
-[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Security
-
-Please use GitHub private vulnerability reporting rather than opening a public
-security issue. See [SECURITY.md](SECURITY.md).
+Network synchronization is limited to the pricing, exchange-rate, and balance endpoints
+declared in `package.json`. Diagnostic exports remove credentials, prompts, response text,
+and local database contents. Security concerns can be reported through GitHub's private
+vulnerability reporting.
 
 ## License
 

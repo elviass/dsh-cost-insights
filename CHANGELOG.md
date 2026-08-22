@@ -1,14 +1,13 @@
-# Changelog
-
-All notable changes to DSH Usage Insights are documented here.
+# 更新记录
 
 ## 1.0.0 - 2026-08-22
 
-First stable release.
+首个正式版本。
 
-- Adds per-conversation, workspace, model, provider, connection, purpose, and date-range usage analytics.
-- Adds token and cost trends, distribution charts, activity heatmaps, API balances, official price synchronization, currency conversion, and DeepSeek peak/off-peak pricing.
-- Extends the existing DSH composer statistics line and sidebar without replacing the original interface.
-- Follows DSH light/dark themes and Chinese/English locale changes.
-- Stores an auditable local SQLite ledger without prompts, response text, or API keys.
-- Adds sanitized diagnostic export from More > About by clicking the version seven times.
+- 支持按对话、工作区、模型、API 提供商、连接、用途和日期范围统计用量。
+- 新增 Token 与费用变化、使用分布、365 天热力图、API 余额和模型价格同步。
+- 支持汇率换算，以及 DeepSeek 官方调用的高峰价和低谷价。
+- 在不替换原界面的前提下扩展 DSH 对话统计栏与侧边栏。
+- 自动跟随 DSH 的中文/英文语言和浅色/深色主题。
+- 使用本地 SQLite 记录可审计的数值数据，不保存提示词、回复正文或 API Key。
+- 在“更多 → 关于”中连续点击版本号 7 次可导出脱敏诊断日志。
