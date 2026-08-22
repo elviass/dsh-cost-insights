@@ -5,7 +5,7 @@
 [![CI](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml)
 
-为 DeepSeek Harness 提供本地用量、Token、缓存、费用、余额和模型价格统计。
+面向 DeepSeek Harness 的本地用量与费用分析插件，提供 Token、缓存、API 余额和模型价格统计。
 
 ![中文用量统计界面](docs/images/usage-cost.png)
 
@@ -32,7 +32,7 @@
 > 本项目只通过 GitHub Releases 分发。npm 上未加 scope 的 `dsh-usage-insights`
 > 属于另一位发布者，与本项目无关，请勿从 npm 安装。
 
-## 使用
+## 使用方法
 
 安装并启动 DSH 后，在“设置 → 用量统计”中查看完整页面。对话输入区下方会显示当前
 模型价格、当前对话费用和支持接口的余额；侧边栏会显示今日总花费。

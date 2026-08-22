@@ -5,7 +5,7 @@
 [![CI](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml)
 
-Local usage, token, cache, cost, balance, and model-pricing analytics for DeepSeek Harness.
+A local usage and cost analytics plugin for DeepSeek Harness, covering tokens, cache activity, API balances, and model pricing.
 
 ![Usage analytics in the Chinese interface](docs/images/usage-cost.png)
 
@@ -32,7 +32,7 @@ Local usage, token, cache, cost, balance, and model-pricing analytics for DeepSe
 > This project is distributed only through GitHub Releases. The unscoped npm name
 > `dsh-usage-insights` belongs to another publisher and is unrelated to this project.
 
-## Use
+## Usage
 
 After installing and starting DSH, open **Settings → Usage Insights** for the full
 dashboard. The line below the conversation composer shows current model pricing,
