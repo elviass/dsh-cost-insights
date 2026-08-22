@@ -5,7 +5,7 @@
 
 为 DeepSeek Harness 提供可审计的本地用量、Token、缓存、余额和价格统计。
 
-![无用户数据的用量统计界面](https://raw.githubusercontent.com/elviass/dsh-usage-insights/v1.0.0/docs/images/usage-cost.png)
+![中文用量统计界面](docs/images/usage-cost.png)
 
 > 本项目只通过 GitHub Releases 分发。npm 上未加 scope 的
 > `dsh-usage-insights` 属于另一位发布者，请勿从 npm 安装，也不要把本仓库发布到 npm。

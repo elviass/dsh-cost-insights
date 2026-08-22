@@ -1,52 +1,49 @@
-# DSH Usage Insights
+# DSH Usage Insights / 用量统计
+
+[English](README.en.md)
 
 [![CI](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml/badge.svg)](https://github.com/elviass/dsh-usage-insights/actions/workflows/codeql.yml)
 
-Auditable local usage, token, cache, balance, and pricing analytics for DeepSeek Harness.
+为 DeepSeek Harness 提供可审计的本地用量、Token、缓存、余额和价格统计。
 
-![Sanitized Usage & Cost view](https://raw.githubusercontent.com/elviass/dsh-usage-insights/v1.0.0/docs/images/usage-cost.png)
+![中文用量统计界面](docs/images/usage-cost.png)
 
-> This project is distributed only through GitHub Releases. The unscoped npm name
-> `dsh-usage-insights` belongs to another publisher. Do not install it from npm and
-> do not publish this repository to npm.
+> 本项目只通过 GitHub Releases 分发。npm 上未加 scope 的
+> `dsh-usage-insights` 属于另一位发布者，请勿从 npm 安装，也不要把本仓库发布到 npm。
 
-## Install
+## 安装
 
-1. Download `dsh-usage-insights-1.0.0.tgz` and `SHA256SUMS.txt` from the
-   [v1.0.0 release](https://github.com/elviass/dsh-usage-insights/releases/tag/v1.0.0).
-2. Verify the archive checksum.
-3. Install the local archive with the DSH plugin command for your profile:
+1. 从 [v1.0.0 Release](https://github.com/elviass/dsh-usage-insights/releases/tag/v1.0.0)
+   下载 `dsh-usage-insights-1.0.0.tgz` 和 `SHA256SUMS.txt`。
+2. 核对压缩包 SHA-256。
+3. 使用对应 DSH profile 安装本地压缩包：
 
    ```console
    dsh plugin --profile web add ./dsh-usage-insights-1.0.0.tgz
    ```
 
-The GitHub package specifier is intentionally not documented as a shortcut until
-it has passed the same two-version installation test as the release archive.
+在 GitHub specifier 通过同样的 DSH 双版本安装验证前，文档不会把它列为快捷安装方式。
 
-## Compatibility
+## 兼容范围
 
 - DeepSeek Harness `>=0.1.0-rc.7 <0.2.0`
 - Node.js `^22.19.0 || >=24.0.0`
-- Web client surface
+- Web 客户端
 
-The release candidate is tested against DSH `0.1.0-rc.7` and `0.1.1-rc.2` in
-independent temporary `DSH_HOME` directories.
+发布候选包已在独立临时 `DSH_HOME` 中分别验证 DSH `0.1.0-rc.7` 和
+`0.1.1-rc.2`，不会读取或修改正常的 `%USERPROFILE%\.dsh`。
 
-## What it records
+## 数据与隐私
 
-The plugin records numeric usage metadata, provider/model identifiers, timestamps,
-session/workspace grouping, price-source metadata, and optional balance snapshots.
-It does not store prompts, responses, or raw API keys. Credential statistics only
-accept explicit credential references (`credentialRef`, `apiKeyRef`, or
-`apiKeyEnv`).
+插件保存数值用量、API 提供商/模型标识、时间、会话/工作区分组、价格来源元数据，
+以及可选的余额快照；不保存提示词、回复正文或原始 API Key。凭据统计只接受明确的
+引用字段：`credentialRef`、`apiKeyRef`、`apiKeyEnv`。
 
-Network price synchronization is limited to the provider documentation hosts listed
-in `package.json`. The OpenRouter catalogue URL is fixed to the official HTTPS API;
-configuration cannot turn it into an arbitrary request target.
+联网价格同步只访问 `package.json` 中声明的官方文档主机。OpenRouter 目录地址固定为
+官方 HTTPS API，配置字段不能把它改成任意 URL 请求入口。
 
-## Development
+## 开发与检查
 
 ```console
 pnpm install --frozen-lockfile
@@ -59,25 +56,23 @@ pnpm run release:build
 pnpm run release:verify
 ```
 
-`test:live` contacts public price/documentation endpoints and reports each source
-separately. Balance adapters use fixtures in automated tests; they do not require or
-read a personal account.
+`test:live` 会访问公开价格/文档端点，并逐个报告来源状态。自动化余额测试只使用
+fixture/mock，不读取个人账号。
 
-The sibling `dsh-sandbox` directory, old release archives, databases, credentials,
-and machine-local screenshots are maintainer-only data and are not part of this
-repository or release package.
+相邻的 `dsh-sandbox`、旧 tgz、数据库、凭据文件和本机原始截图属于维护者本地数据，
+不会进入本仓库或发布包。
 
-## Release policy
+## 发布策略
 
-Tags matching `v*` build GitHub Release assets: the `.tgz`, `SHA256SUMS.txt`, an SPDX
-SBOM, and release notes. There is no npm-publish job. See
-[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
+`v*` 标签工作流只生成 GitHub Release 资产：`.tgz`、`SHA256SUMS.txt`、SPDX SBOM
+和 release notes；没有 npm 发布任务。发布前请执行
+[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)，贡献规范见
+[CONTRIBUTING.md](CONTRIBUTING.md)。
 
-## Security
+## 安全问题
 
-Please use GitHub private vulnerability reporting rather than opening a public
-security issue. See [SECURITY.md](SECURITY.md).
+请使用 GitHub 私密漏洞报告，不要公开提交安全 Issue。详见 [SECURITY.md](SECURITY.md)。
 
-## License
+## 许可证
 
 MIT © 2026 elviass
