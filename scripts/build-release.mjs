@@ -10,7 +10,10 @@ const pkg = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'))
 const filename = `${pkg.name}-${pkg.version}.tgz`
 const pnpmCli = process.env.npm_execpath
 if (!pnpmCli) throw new Error('Run this script through pnpm run release:build')
-const pnpm = (args, options = {}) => execFileSync(process.execPath, [pnpmCli, ...args], { cwd: root, ...options })
+// Modern pnpm installations may expose npm_execpath as a standalone native
+// executable rather than a JavaScript entry point. Execute the package manager
+// directly so both forms keep working through their shebang/binary launcher.
+const pnpm = (args, options = {}) => execFileSync(pnpmCli, args, { cwd: root, ...options })
 
 await rm(release, { recursive: true, force: true })
 await mkdir(release, { recursive: true })
