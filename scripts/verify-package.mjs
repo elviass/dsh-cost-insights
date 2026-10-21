@@ -27,7 +27,9 @@ try {
     const [source, packed] = await Promise.all([readFile(join(root, relativePath)), readFile(join(extracted, path))])
     if (relativePath === 'package.json') {
       const sourceManifest = JSON.parse(source), packedManifest = JSON.parse(packed)
+      // pnpm omits packageManager while npm keeps it; it is install tooling, not package content.
       delete sourceManifest.packageManager
+      delete packedManifest.packageManager
       if (JSON.stringify(canonical(sourceManifest)) !== JSON.stringify(canonical(packedManifest))) throw new Error('packed package.json differs semantically from source')
     } else if (!source.equals(packed)) throw new Error(`packed file differs from source: ${relativePath}`)
   }

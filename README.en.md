@@ -45,12 +45,15 @@ In **More → About**, click the version seven times to export a sanitized diagn
 
 ## Compatibility
 
-- DeepSeek Harness `>=0.1.0-rc.7 <0.2.0`
+- DeepSeek Harness `>=0.1.0-rc.7 <0.3.0-0`
 - Node.js `^22.19.0 || >=24.0.0`
 - DSH web client
 
-Version 1.0.1 retains the compatibility range validated for v1.0.0 with DSH
-`0.1.0-rc.7` and `0.1.1-rc.2` in independent temporary `DSH_HOME` directories.
+The compatibility range is kept identical in `engines.dsh`,
+`dshhub.compatibility.dsh`, and the DSH peer dependency. This patched build was
+verified in an isolated temporary `DSH_HOME` against DSH `0.2.1-rc.2` startup,
+the settings page, and the sidebar entry point. Earlier versions were also
+validated with DSH `0.1.0-rc.7`, `0.1.1-rc.2`, and `0.2.0-rc.2`.
 
 ## Data and privacy
 
@@ -62,6 +65,11 @@ Network synchronization is limited to the pricing, exchange-rate, and balance en
 declared in `package.json`. Diagnostic exports remove credentials, prompts, response text,
 and local database contents. Security concerns can be reported through GitHub's private
 vulnerability reporting.
+
+## Local changes and maintenance
+
+See the [maintenance notes](docs/local-improvements.md) for the DSH compatibility fix,
+separate cache metrics, and date controls.
 
 ## License
 

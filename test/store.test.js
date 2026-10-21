@@ -89,8 +89,9 @@ test('diagnostic export contains runtime health without sensitive fields', async
   const store = await new LedgerStore(path).open()
   try {
     const diagnostics = store.exportDiagnostics()
+    const manifest = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
     const serialized = JSON.stringify(diagnostics)
-    assert.equal(diagnostics.plugin.version, '1.0.1')
+    assert.equal(diagnostics.plugin.version, manifest.version)
     assert.equal(diagnostics.privacy.apiKeys, false)
     assert.equal(diagnostics.privacy.prompts, false)
     assert.equal(serialized.includes('DEEPSEEK_API_KEY'), false)

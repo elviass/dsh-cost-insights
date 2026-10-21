@@ -12,10 +12,14 @@ const [client, store, changelog, workspace, license] = await Promise.all([
 ])
 
 requireText(pkg.private === true, 'package.json must remain private for GitHub-only distribution')
-requireText(pkg.version === '1.0.1', 'release version must be 1.0.1')
+requireText(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/.test(pkg.version), 'release version must be a semantic version')
 requireText(pkg.repository?.url === 'git+https://github.com/elviass/dsh-cost-insights.git', 'repository URL mismatch')
-requireText(pkg.engines?.node === '^22.19.0 || >=24.0.0', 'Node engine range mismatch')
-requireText(pkg.peerDependencies?.['@deepseek-ai/dsh'] === '>=0.1.0-rc.7 <0.2.0', 'DSH peer range mismatch')
+const dshRange = pkg.dshhub?.compatibility?.dsh
+requireText(typeof dshRange === 'string' && dshRange.trim() !== '', 'DSH compatibility range is missing')
+requireText(pkg.engines?.dsh === dshRange, 'engines.dsh must match the dshhub DSH compatibility range')
+requireText(pkg.peerDependencies?.['@deepseek-ai/dsh'] === dshRange, 'DSH peer range must match the dshhub compatibility range')
+requireText(pkg.engines?.node === pkg.dshhub?.compatibility?.node, 'Node engine range must match the dshhub compatibility range')
+requireText(new Set(pkg.dsh?.client?.inject || []).size === (pkg.dsh?.client?.inject || []).length, 'dsh.client.inject must not contain duplicates')
 requireText(client.includes(`const PLUGIN_VERSION = '${pkg.version}'`), 'client version does not match package.json')
 requireText(store.includes(`version: '${pkg.version}'`), 'diagnostic version does not match package.json')
 requireText(changelog.includes(`## ${pkg.version} - `), 'CHANGELOG lacks the release version')
